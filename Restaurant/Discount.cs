@@ -9,12 +9,15 @@ namespace Restaurant
         private const decimal DiscountWinter = 0.15m;
 
 
-        public decimal CalculateProductDiscount(Product product) => CalculateProductDiscountInternal(product);
+        public decimal CalculateTotalAfterDiscount(Product product) => CalculateTotalAfterDiscountInternal(product);
 
-        public Task<decimal> CalculateProductDiscountAsync(Product product) => Task.Run(() => CalculateProductDiscountInternal(product));
+        public Task<decimal> CalculateTotalAfterDiscountAsync(Product product) => Task.Run(() => CalculateTotalAfterDiscountInternal(product));
 
-        private decimal CalculateProductDiscountInternal(Product product)
+        private decimal CalculateTotalAfterDiscountInternal(Product product)
         {
+            if (product.Total == 0)
+                throw new ArgumentException("Total should be bigger than zero.");
+
             if (DateTime.Now.Month == 2 || DateTime.Now.Month == 3)
             {
                 return product.Total - (product.Total * DiscountSummer);

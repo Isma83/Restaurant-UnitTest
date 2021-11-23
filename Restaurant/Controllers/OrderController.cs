@@ -17,7 +17,7 @@ namespace Restaurant.Controllers
         [HttpPost]
         public decimal TotalWithDiscount(Product product)
         {
-            return _order.CalculateProductDiscount(product);
+            return _order.CalculateTotalAfterDiscount(product);
         }
     }
 }
