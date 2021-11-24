@@ -7,7 +7,12 @@ namespace Restaurant.Controllers
 
     public class OrderController : ControllerBase
     {
-        private readonly Discount _order = new Discount();
+        private readonly IDiscount _discount;
+
+        public OrderController(IDiscount discount)
+        {
+            _discount = discount;
+        }
 
         /// <summary>
         /// Calculates the <see cref="Product"/> discount.
@@ -17,7 +22,7 @@ namespace Restaurant.Controllers
         [HttpPost]
         public decimal TotalWithDiscount(Product product)
         {
-            return _order.CalculateTotalAfterDiscount(product);
+            return _discount.CalculateTotalAfterDiscount(product);
         }
     }
 }

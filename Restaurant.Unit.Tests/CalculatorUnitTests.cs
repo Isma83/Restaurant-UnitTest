@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Restaurant.Unit.Tests
@@ -27,7 +28,31 @@ namespace Restaurant.Unit.Tests
             var result = _calculator.Sum(value1, value2);
 
             // Assert
-            Assert.AreEqual(expectedResult, result);
+            result.Should().Be(expectedResult);
+        }
+
+        [Test]
+        public void Multiply_ShouldReturnExpectedValue()
+        {
+            // Arrange
+
+            // Act
+            var result = _calculator.Multiply(2, 2);
+
+            // Assert
+            result.Should().Be(4);
+        }
+
+        [Test]
+        public void Multiply_ShouldReturnExpectedValue_2and0()
+        {
+            // Arrange
+
+            // Act
+            var result = _calculator.Multiply(2, 0);
+
+            // Assert
+            result.Should().Be(0);
         }
     }
 }
